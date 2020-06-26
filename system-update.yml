@@ -1,0 +1,11 @@
+---
+- hosts: RenderPis
+  tasks:
+  - name: Fetch updates from the distro repo
+    become: yes
+    become_method: sudo
+    command: apt update
+  - name: Perform the updates
+    become: yes
+    become_method: sudo
+    command: apt upgrade -y
