@@ -9,7 +9,7 @@
           - blender
         state: present
         update_cache: yes
-
+#Needed to update the pyzmq library required by crowd-render
     - name: Install pip3
       become: yes
       apt:
@@ -17,10 +17,10 @@
           - python3-pip
         state: present
         update_cache: yes
-
+#Update the outdated library
     - name: Update the pyzmq library required for crowd-render
       become: yes
       command: pip3 install --upgrade pyzmq
-
+#Execute the python script to install and setup crowd-render in a headless config. 
     - name: Run the python script to configure crowd-render to be used in headless mode
-      command: install_crowdrender.py
+      command: python3 install_crowdrender.py
