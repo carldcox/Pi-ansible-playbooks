@@ -1,0 +1,26 @@
+# carldcox Ansible playbook to install blender
+# This script is for a RPi 4 running buster
+- hosts: RenderPis
+  tasks:
+    - name: install blender
+      become: yes
+      apt:
+        pkg:
+          - blender
+        state: present
+        update_cache: yes
+
+    - name: Install pip3
+      become: yes
+      apt:
+        pkg:
+          - python3-pip
+        state: present
+        update_cache: yes
+
+    - name: Update the pyzmq library required for crowd-render
+      become: yes
+      command: pip3 install --upgrade pyzmq
+
+    - name: Run the python script to configure crowd-render to be used in headless mode
+      command: install_crowdrender.py
