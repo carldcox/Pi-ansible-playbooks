@@ -1,0 +1,10 @@
+---
+- hosts: RenderPis
+  tasks:
+  - name: Run blender python scripts for crowdrender
+    become: yes
+    become_method:: sudo
+    command: ./load_crowdrender.py
+  
+  - name: Start blender headless on our slaves
+    command: 
